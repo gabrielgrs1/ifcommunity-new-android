@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">IFCommunity</string>
+    <string name="no_connection_exception_msg">Verifique sua conexão com a internet e tente novamente!</string>
+    <string name="error_server">Não foi possível se conectar ao servidor.</string>
+</resources>

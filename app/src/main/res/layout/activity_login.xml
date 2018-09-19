@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.WelcomeActivity">
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="Background Login"
+        android:scaleType="fitCenter"
+        android:src="@drawable/background_login_welcome"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/login_ifcommunity_title_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/lilitaone_regular"
+        android:gravity="center"
+        android:text="IFCommunity"
+        android:textAllCaps="true"
+        android:textColor="@color/colorTitleIFcommuntiy"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UnusedAttribute" />
+
+    <TextView
+        android:id="@+id/login_welcome_back_textview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/montserrat"
+        android:gravity="left"
+        android:text="Bem-vindo de volta"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login_ifcommunity_title_textview"
+        tools:ignore="RtlHardcoded,UnusedAttribute" />
+
+    <TextView
+        android:id="@+id/login_signup_textview"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:fontFamily="@font/open_sans_light"
+        android:gravity="left"
+        android:text="Faça o login para continuar"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/login_welcome_back_textview"
+        app:layout_constraintStart_toStartOf="@+id/login_welcome_back_textview"
+        app:layout_constraintTop_toBottomOf="@+id/login_welcome_back_textview"
+        tools:ignore="RtlHardcoded,UnusedAttribute" />
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/login_login_input_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:hint="Email ou matricula"
+        app:layout_constraintEnd_toEndOf="@+id/login_signup_textview"
+        app:layout_constraintStart_toStartOf="@+id/login_signup_textview"
+        app:layout_constraintTop_toBottomOf="@+id/login_signup_textview">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/login_password_input_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:hint="Senha"
+        app:layout_constraintEnd_toEndOf="@+id/login_login_input_layout"
+        app:layout_constraintStart_toStartOf="@+id/login_login_input_layout"
+        app:layout_constraintTop_toBottomOf="@+id/login_login_input_layout"
+        app:passwordToggleEnabled="true">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/login_login_button"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/style_button_login"
+        android:fontFamily="@font/open_sans"
+        android:text="Logar"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        app:fontFamily="@font/open_sans"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_password_input_layout"
+        tools:ignore="UnusedAttribute" />
+
+    <Button
+        android:id="@+id/login_back_button"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/style_button_register"
+        android:fontFamily="@font/open_sans"
+        android:text="Voltar"
+        android:textAllCaps="false"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="@+id/login_login_button"
+        app:layout_constraintStart_toStartOf="@+id/login_login_button"
+        app:layout_constraintTop_toBottomOf="@+id/login_login_button"
+        tools:ignore="UnusedAttribute" />
+
+</android.support.constraint.ConstraintLayout>
