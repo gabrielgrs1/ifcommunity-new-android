@@ -1,7 +1,9 @@
 package ifcommunity.com.br.ifcommunity.ui.activity;
 
 import android.content.Context;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.util.Objects;
@@ -24,6 +26,8 @@ public class NewLoginActivity extends GenericActivity implements LoginService.Lo
     @BindView(R.id.login_password_edittext)
     EditText passwordEditText;
 
+    @BindView(R.id.progress_bar_login)
+    ProgressBar progressBarLogin;
 
     @Override
     public void setLayout() {
@@ -48,11 +52,13 @@ public class NewLoginActivity extends GenericActivity implements LoginService.Lo
 
     @Override
     public void startLoading() {
+        progressBarLogin.setVisibility(View.VISIBLE);
 
     }
 
     @Override
     public void hideLoading() {
+        progressBarLogin.setVisibility(View.GONE);
 
     }
 
