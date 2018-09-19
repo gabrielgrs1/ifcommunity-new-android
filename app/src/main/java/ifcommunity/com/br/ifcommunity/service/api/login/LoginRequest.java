@@ -17,10 +17,9 @@ public class LoginRequest implements Serializable {
     @SerializedName("password")
     private String password;
 
-    public LoginRequest setValues(String user, String password) {
+    public LoginRequest(String user, String password) {
         this.user = user;
         this.password = password;
-        return this;
     }
 
     public String getUser() {

@@ -3,7 +3,6 @@ package ifcommunity.com.br.ifcommunity.service.api.login;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 /**
  * Created by paulo.
@@ -11,94 +10,133 @@ import java.util.ArrayList;
  * Time: 15:48
  */
 public class LoginResponse implements Serializable {
+    @SerializedName("userId")
+    private String userId;
 
-    @SerializedName("id")
-    private Integer id;
+    @SerializedName("studentId")
+    private Integer studentId;
+
+    @SerializedName("user")
+    private String user;
 
     @SerializedName("name")
     private String name;
 
-    @SerializedName("cpfOrCnpj")
-    private String cpfOrCnpj;
+    @SerializedName("phone")
+    private String phone;
 
-    @SerializedName("userName")
-    private String userName;
+    @SerializedName("mail")
+    private String mail;
 
-    @SerializedName("profiles")
-    private ArrayList profiles;
+    @SerializedName("typeUser")
+    private Integer typeUser;
 
-    @SerializedName("rentalHistory")
-    private ArrayList<Rental> rentalHistory;
+    @SerializedName("period")
+    private Integer period;
+
+    @SerializedName("enrolledNumber")
+    private String enrolledNumber;
+
+    @SerializedName("photoHash")
+    private String photoHash;
+
 
     public LoginResponse() {
     }
 
-    public Integer getId() {
-        return id;
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public Integer getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(Integer studentId) {
+        this.studentId = studentId;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getCpfOrCnpj() {
-        return cpfOrCnpj;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getPhone() {
+        return phone;
     }
 
-    public ArrayList getProfiles() {
-        return profiles;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public ArrayList<Rental> getRentalHistory() {
-        return rentalHistory;
+    public String getMail() {
+        return mail;
     }
 
-    private class Rental {
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
 
-        @SerializedName("id")
-        private Integer id;
+    public Integer getTypeUser() {
+        return typeUser;
+    }
 
-        @SerializedName("blockRentStatus")
-        private String blockRentStatus;
+    public void setTypeUser(Integer typeUser) {
+        this.typeUser = typeUser;
+    }
 
-        @SerializedName("date")
-        private String date;
+    public Integer getPeriod() {
+        return period;
+    }
 
-        public Integer getId() {
-            return id;
-        }
+    public void setPeriod(Integer period) {
+        this.period = period;
+    }
 
-        public String getBlockRentStatus() {
-            return blockRentStatus;
-        }
+    public String getEnrolledNumber() {
+        return enrolledNumber;
+    }
 
-        public String getDate() {
-            return date;
-        }
+    public void setEnrolledNumber(String enrolledNumber) {
+        this.enrolledNumber = enrolledNumber;
+    }
 
-        @Override
-        public String toString() {
-            return "Rental{" +
-                    "id=" + id +
-                    ", blockRentStatus='" + blockRentStatus + '\'' +
-                    ", date='" + date + '\'' +
-                    '}';
-        }
+    public String getPhotoHash() {
+        return photoHash;
+    }
+
+    public void setPhotoHash(String photoHash) {
+        this.photoHash = photoHash;
     }
 
     @Override
     public String toString() {
         return "LoginResponse{" +
-                "id=" + id +
+                "userId='" + userId + '\'' +
+                ", studentId=" + studentId +
+                ", user='" + user + '\'' +
                 ", name='" + name + '\'' +
-                ", cpfOrCnpj='" + cpfOrCnpj + '\'' +
-                ", userName='" + userName + '\'' +
-                ", profiles=" + profiles +
-                ", rentalHistory=" + rentalHistory +
+                ", phone='" + phone + '\'' +
+                ", mail='" + mail + '\'' +
+                ", typeUser=" + typeUser +
+                ", period=" + period +
+                ", enrolledNumber='" + enrolledNumber + '\'' +
+                ", photoHash='" + photoHash + '\'' +
                 '}';
     }
 }

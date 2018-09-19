@@ -38,7 +38,7 @@ public class LoginService implements ILoginService {
 
                 if (response.isSuccessful() && response.body() != null) {
                     loginListener.response(response.body());
-                } else if (response.code() != 200){
+                } else if (response.code() != 200) {
                     loginListener.serverError(IfcommunityApplication.getInstance().getString(R.string.error_server));
                 }
             }
@@ -53,8 +53,11 @@ public class LoginService implements ILoginService {
 
     public interface LoginServiceListener {
         void response(LoginResponse loginResponse);
+
         void startLoading();
+
         void hideLoading();
+
         void serverError(String message);
     }
 
