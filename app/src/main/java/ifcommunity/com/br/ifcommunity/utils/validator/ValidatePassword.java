@@ -9,7 +9,7 @@ import ifcommunity.com.br.ifcommunity.R;
 
 public class ValidatePassword implements IValidator {
 
-    private static final String PASSWORD_REGEX = "(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{8,10}";
+    private static final String PASSWORD_REGEX = "(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{8,}";
     private final EditText passwordEditText;
     private final TextInputLayout passwordInputLayout;
     private final DefaultValidation defaultValidation;
