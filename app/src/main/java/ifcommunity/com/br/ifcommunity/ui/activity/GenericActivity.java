@@ -57,6 +57,14 @@ public abstract class GenericActivity extends AppCompatActivity {
         return true;
     }
 
+    protected void buildGenericAlert(String title, String message, int duration, int color) {
+        Sneaker.with(this)
+                .setTitle(title)
+                .setDuration(duration)
+                .setMessage(message)
+                .sneak(color);
+    }
+
     public abstract void setLayout();
 
     public abstract void loadingMethods();

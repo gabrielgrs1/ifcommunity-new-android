@@ -4,11 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.irozon.sneaker.Sneaker;
+
+import net.grandcentrix.tray.AppPreferences;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +19,7 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import ifcommunity.com.br.ifcommunity.IfcommunityApplication;
 import ifcommunity.com.br.ifcommunity.R;
@@ -30,6 +34,8 @@ public class LoginActivity extends GenericActivity implements LoginService.Login
 
     Context context = this;
     private final List<IValidator> validatorList = new ArrayList<>();
+    private AppPreferences appPreferences;
+
 
     @BindView(R.id.login_login_edittext)
     EditText loginEditText;
@@ -46,6 +52,8 @@ public class LoginActivity extends GenericActivity implements LoginService.Login
     @BindView(R.id.login_password_input_layout)
     TextInputLayout passwordInputLayout;
 
+    @BindView(R.id.login_remember_checkbox)
+    CheckBox rememberCheckbox;
 
     @Override
     public void setLayout() {
@@ -55,12 +63,14 @@ public class LoginActivity extends GenericActivity implements LoginService.Login
 
     @Override
     public void loadingMethods() {
+        appPreferences = new AppPreferences(context);
         loadValidation();
+        loadSavedUser();
     }
 
     @Override
     public void response(LoginResponse loginResponse) {
-        Toast.makeText(context, loginResponse.getName(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Usuário logado: " + loginResponse.getName(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -88,6 +98,7 @@ public class LoginActivity extends GenericActivity implements LoginService.Login
     void login() {
         if (validateAllFields() && checkInternet()) {
             loginService();
+            remeberCheckToggle();
         }
     }
 
@@ -102,12 +113,21 @@ public class LoginActivity extends GenericActivity implements LoginService.Login
         startActivity(intent);
     }
 
+    private void remeberCheckToggle() {
+        if (rememberCheckbox.isChecked()) {
+            appPreferences.put("user", loginEditText.getText().toString());
+            appPreferences.put("password", passwordEditText.getText().toString());
+        } else {
+            appPreferences.put("user", "");
+            appPreferences.put("password", "");
+        }
+    }
+
     private void loginService() {
         String login = Objects.requireNonNull(loginEditText.getText().toString());
         String password = Objects.requireNonNull(passwordEditText.getText().toString());
 
         LoginRequest request = new LoginRequest(login, password);
-
         new LoginService(this).login(request);
     }
 
@@ -137,6 +157,15 @@ public class LoginActivity extends GenericActivity implements LoginService.Login
         validatePassword();
     }
 
+    private void loadSavedUser() {
+        loginEditText.setText(appPreferences.getString("user", ""));
+        passwordEditText.setText(appPreferences.getString("password", ""));
+        if (!Objects.requireNonNull(appPreferences.getString("user", "")).isEmpty()) {
+            rememberCheckbox.setChecked(true);
+        }
+    }
+
+
     private boolean validateAllFields() {
         boolean fieldsIsValid = true;
         for (IValidator validator :
@@ -145,7 +174,6 @@ public class LoginActivity extends GenericActivity implements LoginService.Login
                 fieldsIsValid = false;
             }
         }
-
         return fieldsIsValid;
     }
 }

@@ -45,6 +45,26 @@ public class ForgotPasswordActivity extends GenericActivity implements PasswordR
 
     }
 
+    @Override
+    public void response(PasswordRecoveryResponse passwordRecoveryResponse) {
+
+    }
+
+    @Override
+    public void startLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void serverError(String message) {
+
+    }
+
     @OnClick(R.id.forgot_password_back_button)
     void backToLogin() {
         onBackPressed();
@@ -58,11 +78,12 @@ public class ForgotPasswordActivity extends GenericActivity implements PasswordR
     }
 
     private void sendRecoveryMail() {
-        Sneaker.with(this)
-                .setTitle(IfcommunityApplication.getInstance().getString(R.string.generic_sorry_title))
-                .setDuration(8000)
-                .setMessage(IfcommunityApplication.getInstance().getString(R.string.generic_not_implemented))
-                .sneak(Color.DKGRAY);
+        buildGenericAlert(IfcommunityApplication.getInstance().getString(R.string.generic_sorry_title),
+                IfcommunityApplication.getInstance().getString(R.string.generic_not_implemented),
+                8000,
+                Color.DKGRAY
+        );
+
         //TODO Fazer lógica de envio de email
     }
 
@@ -86,25 +107,5 @@ public class ForgotPasswordActivity extends GenericActivity implements PasswordR
         }
 
         return fieldsIsValid;
-    }
-
-    @Override
-    public void response(PasswordRecoveryResponse passwordRecoveryResponse) {
-
-    }
-
-    @Override
-    public void startLoading() {
-
-    }
-
-    @Override
-    public void hideLoading() {
-
-    }
-
-    @Override
-    public void serverError(String message) {
-
     }
 }

@@ -43,7 +43,10 @@ dependencies {
     //Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
 
-    // Alerter sneaker
+    //Alerter sneaker
     implementation 'com.irozon.sneaker:sneaker:1.0.3'
+
+    //Tray sharedpreferences
+    implementation 'net.grandcentrix.tray:tray:0.12.0'
 
 }
