@@ -13,7 +13,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".ui.activity.WelcomeActivity"
             android:theme="@style/WelcomeLoginTheme">
@@ -30,6 +29,10 @@
 
         <activity
             android:name=".ui.activity.LoginActivity"
+            android:theme="@style/WelcomeLoginTheme" />
+
+        <activity
+            android:name=".ui.activity.ForgotPasswordActivity"
             android:theme="@style/WelcomeLoginTheme" />
     </application>
 

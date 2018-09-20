@@ -1,6 +1,7 @@
 package ifcommunity.com.br.ifcommunity.ui.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.view.View;
 import android.widget.EditText;
@@ -92,6 +93,12 @@ public class LoginActivity extends GenericActivity implements LoginService.Login
     @OnClick(R.id.login_back_button)
     void backToWelcome() {
         onBackPressed();
+    }
+
+    @OnClick(R.id.login_forgot_passsword_button)
+    void changeScreenToForgotPassword() {
+        Intent intent = new Intent(context, ForgotPasswordActivity.class);
+        startActivity(intent);
     }
 
     private void loginService() {
