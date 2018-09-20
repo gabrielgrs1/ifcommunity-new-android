@@ -4,6 +4,7 @@ import android.support.design.widget.TextInputLayout;
 import android.widget.EditText;
 
 import butterknife.BindView;
+import ifcommunity.com.br.ifcommunity.IfcommunityApplication;
 import ifcommunity.com.br.ifcommunity.R;
 
 public class ValidatePassword implements IValidator {
@@ -23,7 +24,7 @@ public class ValidatePassword implements IValidator {
         if (password.matches(PASSWORD_REGEX)) {
             return true;
         }
-        passwordInputLayout.setError("Senha inválida");
+        passwordInputLayout.setError(IfcommunityApplication.getInstance().getString(R.string.generic_invalid_password));
         return false;
     }
 

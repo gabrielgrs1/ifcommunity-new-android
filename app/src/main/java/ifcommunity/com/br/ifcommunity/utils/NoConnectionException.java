@@ -9,6 +9,6 @@ public class NoConnectionException extends IOException {
 
     @Override
     public String getMessage() {
-        return IfcommunityApplication.getInstance().getString(R.string.no_connection_exception_msg);
+        return IfcommunityApplication.getInstance().getString(R.string.generic_no_connection_message);
     }
 }

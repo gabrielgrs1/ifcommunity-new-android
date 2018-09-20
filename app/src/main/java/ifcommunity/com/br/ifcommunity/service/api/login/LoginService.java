@@ -1,8 +1,7 @@
 package ifcommunity.com.br.ifcommunity.service.api.login;
 
 import android.support.annotation.NonNull;
-
-import java.util.Objects;
+import android.util.Log;
 
 import ifcommunity.com.br.ifcommunity.IfcommunityApplication;
 import ifcommunity.com.br.ifcommunity.R;
@@ -41,18 +40,20 @@ public class LoginService implements ILoginService {
                 if (response.isSuccessful() && response.body() != null) {
                     loginListener.response(response.body());
                 } else if (response.code() == 403) {
-                    loginListener.serverError("Usuário e/ou senha incorreto!");
+                    loginListener.serverError(IfcommunityApplication.getInstance().getString(R.string.generic_worng_user_password));
                 } else if (response.code() == 500) {
-                    loginListener.serverError(Objects.requireNonNull(response.errorBody()).toString());
+                    loginListener.serverError(IfcommunityApplication.getInstance().getString(R.string.generic_server_error));
                 } else if (response.code() != 200) {
-                    loginListener.serverError(IfcommunityApplication.getInstance().getString(R.string.error_server));
+                    loginListener.serverError(IfcommunityApplication.getInstance().getString(R.string.generic_unkown_error));
                 }
+
+                Log.e(IfcommunityApplication.getInstance().getString(R.string.generic_log_error), response.message());
             }
 
             @Override
             public void onFailure(@NonNull Call<LoginResponse> call, @NonNull Throwable t) {
                 loginListener.hideLoading();
-                loginListener.serverError(IfcommunityApplication.getInstance().getString(R.string.error_server));
+                loginListener.serverError(IfcommunityApplication.getInstance().getString(R.string.generic_server_error));
             }
         });
     }

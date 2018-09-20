@@ -4,6 +4,7 @@ import android.support.design.widget.TextInputLayout;
 import android.widget.EditText;
 
 import butterknife.BindView;
+import ifcommunity.com.br.ifcommunity.IfcommunityApplication;
 import ifcommunity.com.br.ifcommunity.R;
 
 public class ValidateLogin implements IValidator {
@@ -23,7 +24,7 @@ public class ValidateLogin implements IValidator {
         if (login.matches(LOGIN_REGEX)) {
             return true;
         }
-        loginInputLayout.setError("Login inválido");
+        loginInputLayout.setError(IfcommunityApplication.getInstance().getString(R.string.generic_invalid_login));
         return false;
     }
 

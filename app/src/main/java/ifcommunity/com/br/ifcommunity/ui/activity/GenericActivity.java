@@ -6,10 +6,10 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
 import com.irozon.sneaker.Sneaker;
 
+import ifcommunity.com.br.ifcommunity.IfcommunityApplication;
 import ifcommunity.com.br.ifcommunity.R;
 import ifcommunity.com.br.ifcommunity.utils.Utils;
 
@@ -46,10 +46,10 @@ public abstract class GenericActivity extends AppCompatActivity {
     protected boolean checkInternet() {
         if (!Utils.isOnline()) {
             Sneaker.with(this)
-                    .setTitle("Erro!!")
+                    .setTitle(IfcommunityApplication.getInstance().getString(R.string.generic_erro_title))
                     .setDuration(8000)
                     .setIcon(R.drawable.ic_signal_wifi_off_black, Color.WHITE, false)
-                    .setMessage("Verifique sua conexão com a internet!")
+                    .setMessage(IfcommunityApplication.getInstance().getString(R.string.generic_no_connection_message))
                     .sneak(Color.DKGRAY);
             return false;
         }

@@ -17,6 +17,7 @@ import java.util.Objects;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import ifcommunity.com.br.ifcommunity.IfcommunityApplication;
 import ifcommunity.com.br.ifcommunity.R;
 import ifcommunity.com.br.ifcommunity.service.api.login.LoginRequest;
 import ifcommunity.com.br.ifcommunity.service.api.login.LoginResponse;
@@ -77,7 +78,7 @@ public class LoginActivity extends GenericActivity implements LoginService.Login
     @Override
     public void serverError(String message) {
         Sneaker.with(this)
-                .setTitle("Erro!!")
+                .setTitle(IfcommunityApplication.getInstance().getString(R.string.generic_erro_title))
                 .setDuration(8000)
                 .setMessage(message)
                 .sneakError();

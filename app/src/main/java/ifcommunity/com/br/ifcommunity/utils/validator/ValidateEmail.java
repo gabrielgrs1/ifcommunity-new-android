@@ -3,6 +3,9 @@ package ifcommunity.com.br.ifcommunity.utils.validator;
 import android.support.design.widget.TextInputLayout;
 import android.widget.EditText;
 
+import ifcommunity.com.br.ifcommunity.IfcommunityApplication;
+import ifcommunity.com.br.ifcommunity.R;
+
 public class ValidateEmail implements IValidator {
     public static final String EMAIL_REGEX = ".+@.+\\..+";
     private final EditText emailEditText;
@@ -19,7 +22,7 @@ public class ValidateEmail implements IValidator {
         if (email.matches(EMAIL_REGEX)) {
             return true;
         }
-        emailInputLayout.setError("Email inválido");
+        emailInputLayout.setError(IfcommunityApplication.getInstance().getString(R.string.generic_invalid_email));
         return false;
     }
 

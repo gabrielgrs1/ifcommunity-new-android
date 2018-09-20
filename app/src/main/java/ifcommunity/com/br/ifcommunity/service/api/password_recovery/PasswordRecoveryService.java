@@ -1,6 +1,7 @@
 package ifcommunity.com.br.ifcommunity.service.api.password_recovery;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import java.util.Objects;
 
@@ -41,16 +42,18 @@ public class PasswordRecoveryService implements IPasswordRecoveryService {
                 if (response.isSuccessful() && response.body() != null) {
                     passwordRecoveryListener.response(response.body());
                 } else if (response.code() == 500) {
-                    passwordRecoveryListener.serverError(Objects.requireNonNull(response.errorBody()).toString());
+                    passwordRecoveryListener.serverError(IfcommunityApplication.getInstance().getString(R.string.generic_server_error));
                 } else if (response.code() != 200) {
-                    passwordRecoveryListener.serverError(IfcommunityApplication.getInstance().getString(R.string.error_server));
+                    passwordRecoveryListener.serverError(IfcommunityApplication.getInstance().getString(R.string.generic_unkown_error));
                 }
+
+                Log.e(IfcommunityApplication.getInstance().getString(R.string.generic_log_error), response.message());
             }
 
             @Override
             public void onFailure(@NonNull Call<PasswordRecoveryResponse> call, @NonNull Throwable t) {
                 passwordRecoveryListener.hideLoading();
-                passwordRecoveryListener.serverError(IfcommunityApplication.getInstance().getString(R.string.error_server));
+                passwordRecoveryListener.serverError(IfcommunityApplication.getInstance().getString(R.string.generic_server_error));
             }
         });
     }
