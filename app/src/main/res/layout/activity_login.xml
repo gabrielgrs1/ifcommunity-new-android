@@ -11,9 +11,9 @@
         android:id="@+id/login_background_imageview"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:contentDescription="Background Login"
+        android:contentDescription="@string/login_background_description_imageview"
         android:scaleType="fitCenter"
-        android:src="@drawable/background_welcome"
+        android:src="@drawable/background_gradient"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +37,7 @@
         android:layout_marginTop="50dp"
         android:fontFamily="@font/montserrat"
         android:gravity="center"
-        android:text="IFCommunity"
+        android:text="@string/login_ifcommunity_title_textview"
         android:textAllCaps="true"
         android:textColor="#016Ef1"
         android:textSize="40sp"
@@ -57,7 +57,7 @@
         android:layout_marginTop="50dp"
         android:fontFamily="@font/montserrat"
         android:gravity="left"
-        android:text="Bem-vindo de volta"
+        android:text="@string/login_welcome_back_textview"
         android:textColor="@android:color/black"
         android:textSize="32sp"
         android:textStyle="bold"
@@ -73,7 +73,7 @@
         android:layout_marginTop="2dp"
         android:fontFamily="@font/open_sans_light"
         android:gravity="left"
-        android:text="Faça o login para continuar"
+        android:text="@string/login_signup_textview"
         android:textColor="#4b4b4b"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/login_welcome_back_textview"
@@ -99,7 +99,7 @@
             android:id="@+id/login_login_edittext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Usuário"
+            android:hint="@string/login_login_edittext"
             android:inputType="text" />
     </android.support.design.widget.TextInputLayout>
 
@@ -117,7 +117,7 @@
             android:id="@+id/login_password_edittext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Senha"
+            android:hint="@string/login_password_edittext"
             android:inputType="textPassword" />
     </android.support.design.widget.TextInputLayout>
 
@@ -126,7 +126,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:text="Esqueceu sua senha?"
+        android:text="@string/login_forgot_passsword_button"
         android:textAllCaps="false"
         android:textColor="@android:color/holo_red_dark"
         app:layout_constraintEnd_toEndOf="@+id/login_password_input_layout"
@@ -149,13 +149,14 @@
         tools:targetApi="lollipop" />
 
     <TextView
+        android:id="@+id/login_remember_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/open_sans"
-        android:text="Lembrar de mim"
+        android:text="@string/login_remember_textview"
         android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="@id/login_remember_checkbox"
         app:layout_constraintEnd_toStartOf="@id/login_remember_checkbox"
@@ -177,7 +178,7 @@
         android:layout_height="75dp"
         android:background="#016Ef1"
         android:fontFamily="@font/open_sans"
-        android:text="Login"
+        android:text="@string/login_login_button"
         android:textAllCaps="false"
         android:textColor="#fff"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -14,31 +14,10 @@
         <item name="colorPrimary">@color/colorPrimaryWelcome</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDarkWelcome</item>
         <item name="colorAccent">@color/colorAccentWelcome</item>
-
-
-        <!--<item name="colorControlNormal">@color/lighGray</item>-->
-        <!--<item name="android:textColorHint">@color/darkGray</item>-->
-        <!--<item name="colorControlActivated">@color/darkGray</item>-->
-        <!--<item name="colorControlHighlight">@color/darkGray</item>-->
     </style>
 
     <style name="LinearProgress" parent="Theme.AppCompat.Light">
         <item name="colorAccent">#016Ef1</item>
         <item name="android:progressBackgroundTint" tools:targetApi="lollipop">#ccc</item>
     </style>
-
-    <!--&lt;!&ndash; Welcome & Login Theme. &ndash;&gt;-->
-    <!--<style name="NewLoginTheme" parent="Theme.AppCompat.NoActionBar">-->
-    <!--&lt;!&ndash; Customize your theme here. &ndash;&gt;-->
-    <!--<item name="colorPrimary">@color/colorPrimaryWelcome</item>-->
-    <!--<item name="colorPrimaryDark">@color/colorPrimaryDarkWelcome</item>-->
-    <!--<item name="colorAccent">@color/colorAccentWelcome</item>-->
-
-    <!--&lt;!&ndash;<item name="colorControlNormal">@color/lighGray</item>&ndash;&gt;-->
-    <!--&lt;!&ndash;<item name="android:textColorHint">@color/darkGray</item>&ndash;&gt;-->
-    <!--&lt;!&ndash;<item name="colorControlActivated">@color/darkGray</item>&ndash;&gt;-->
-    <!--&lt;!&ndash;<item name="colorControlHighlight">#323846</item>&ndash;&gt;-->
-    <!--</style>-->
-
-
 </resources>

@@ -12,4 +12,28 @@
     <string name="generic_invalid_email">Email inválido</string>
     <string name="generic_invalid_login">Login inválido</string>
     <string name="generic_invalid_password">Senha inválida</string>
+
+    <!--Login-->
+    <string name="login_ifcommunity_title_textview">IFCommunity</string>
+    <string name="login_welcome_back_textview">Bem-vindo de volta</string>
+    <string name="login_signup_textview">Faça o login para continuar</string>
+    <string name="login_login_edittext">Usuário</string>
+    <string name="login_password_edittext">Senha</string>
+    <string name="login_forgot_passsword_button">Esqueceu sua senha?</string>
+    <string name="login_remember_textview">Lembrar de mim</string>
+    <string name="login_login_button">Login</string>
+
+    <!--Forgot Password-->
+    <string name="forgot_password_background_description_imageview">Forgot Password Background Gradient</string>
+    <string name="forgot_password_description_textview">Esqueceu sua senha?</string>
+    <string name="forgot_password_title_description_textview">Sem problemas, nós resolvemos isso para você! Nos informe seu e-mail que iremos mandar as instruções para fazer o reset dela.</string>
+    <string name="forgot_password_send_button">Enviar</string>
+    <string name="forgot_password_mail_input_layout">E-mail</string>
+    <string name="login_background_description_imageview">Login Background Gradient</string>
+    <string name="welcome_background_imageview">Welcome Background Gradient</string>
+    <string name="welcome_ifcommunity_title_textview">IFCommunity</string>
+    <string name="welcome_title_description_textview">Compartilhe conhecimento na comunidade IF</string>
+    <string name="welcome_description_textview">Plataforma desenvolvida para compartilhar conhecimentos de todas as discilpinas</string>
+    <string name="welcome_login_button">Login</string>
+    <string name="welcome_register_button">Criar uma conta</string>
 </resources>
