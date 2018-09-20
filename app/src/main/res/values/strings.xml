@@ -8,10 +8,12 @@
     <string name="generic_unkown_error">Erro desconhecido!</string>
     <string name="generic_log_error">Erro de servidor: </string>
     <string name="generic_erro_title">Erro!</string>
+    <string name="generic_sorry_title">Desculpe</string>
     <string name="generic_required_field">Campo obrigatório</string>
     <string name="generic_invalid_email">Email inválido</string>
     <string name="generic_invalid_login">Login inválido</string>
     <string name="generic_invalid_password">Senha inválida</string>
+    <string name="generic_not_implemented">Funcionalidade ainda não implementada!</string>
 
     <!--Login-->
     <string name="login_ifcommunity_title_textview">IFCommunity</string>
@@ -30,6 +32,8 @@
     <string name="forgot_password_send_button">Enviar</string>
     <string name="forgot_password_mail_input_layout">E-mail</string>
     <string name="login_background_description_imageview">Login Background Gradient</string>
+
+    <!--Welcome-->
     <string name="welcome_background_imageview">Welcome Background Gradient</string>
     <string name="welcome_ifcommunity_title_textview">IFCommunity</string>
     <string name="welcome_title_description_textview">Compartilhe conhecimento na comunidade IF</string>

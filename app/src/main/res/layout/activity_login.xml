@@ -74,7 +74,7 @@
         android:fontFamily="@font/open_sans_light"
         android:gravity="left"
         android:text="@string/login_signup_textview"
-
+        android:textColor="@color/subtitleGray"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@+id/login_welcome_back_textview"
         app:layout_constraintStart_toStartOf="@+id/login_welcome_back_textview"

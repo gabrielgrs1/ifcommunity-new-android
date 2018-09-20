@@ -2,8 +2,12 @@ package ifcommunity.com.br.ifcommunity.ui.activity;
 
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.design.widget.TextInputLayout;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.irozon.sneaker.Sneaker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +15,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import ifcommunity.com.br.ifcommunity.IfcommunityApplication;
 import ifcommunity.com.br.ifcommunity.R;
 import ifcommunity.com.br.ifcommunity.service.api.password_recovery.PasswordRecoveryResponse;
 import ifcommunity.com.br.ifcommunity.service.api.password_recovery.PasswordRecoveryService;
@@ -18,7 +23,7 @@ import ifcommunity.com.br.ifcommunity.utils.validator.IValidator;
 import ifcommunity.com.br.ifcommunity.utils.validator.ValidateEmail;
 import ifcommunity.com.br.ifcommunity.utils.validator.ValidatePassword;
 
-public class ForgotPasswordActivity extends GenericActivity implements PasswordRecoveryService.PasswordRecoveryListener{
+public class ForgotPasswordActivity extends GenericActivity implements PasswordRecoveryService.PasswordRecoveryListener {
 
     Context context = this;
     private final List<IValidator> validatorList = new ArrayList<>();
@@ -53,6 +58,11 @@ public class ForgotPasswordActivity extends GenericActivity implements PasswordR
     }
 
     private void sendRecoveryMail() {
+        Sneaker.with(this)
+                .setTitle(IfcommunityApplication.getInstance().getString(R.string.generic_sorry_title))
+                .setDuration(8000)
+                .setMessage(IfcommunityApplication.getInstance().getString(R.string.generic_not_implemented))
+                .sneak(Color.DKGRAY);
         //TODO Fazer lógica de envio de email
     }
 

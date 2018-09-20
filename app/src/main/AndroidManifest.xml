@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.activity.WelcomeActivity"
-            android:theme="@style/WelcomeLoginTheme">
+            android:theme="@style/AppThemeAlternative">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,11 +29,11 @@
 
         <activity
             android:name=".ui.activity.LoginActivity"
-            android:theme="@style/WelcomeLoginTheme" />
+            android:theme="@style/AppThemeAlternative" />
 
         <activity
             android:name=".ui.activity.ForgotPasswordActivity"
-            android:theme="@style/WelcomeLoginTheme" />
+            android:theme="@style/AppThemeAlternative" />
     </application>
 
 </manifest>
