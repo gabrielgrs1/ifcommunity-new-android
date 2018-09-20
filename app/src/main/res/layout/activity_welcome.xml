@@ -27,7 +27,7 @@
         android:gravity="center"
         android:text="@string/welcome_ifcommunity_title_textview"
         android:textAllCaps="true"
-        android:textColor="#016Ef1"
+        android:textColor="@color/themeColor"
         android:textSize="42sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

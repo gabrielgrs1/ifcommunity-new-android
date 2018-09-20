@@ -13,11 +13,13 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimaryWelcome</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDarkWelcome</item>
-        <item name="colorAccent">@color/colorAccentWelcome</item>
+        <item name="colorAccent">@color/colorPrimaryButton</item>
     </style>
 
     <style name="LinearProgress" parent="Theme.AppCompat.Light">
-        <item name="colorAccent">#016Ef1</item>
-        <item name="android:progressBackgroundTint" tools:targetApi="lollipop">#ccc</item>
+        <item name="colorAccent">@color/themeColor</item>
+        <item name="android:progressBackgroundTint" tools:targetApi="lollipop">
+            @android:color/darker_gray
+        </item>
     </style>
 </resources>

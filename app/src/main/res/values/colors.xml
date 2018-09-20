@@ -6,7 +6,10 @@
 
     <color name="colorPrimaryWelcome">#f2f2f2</color>
     <color name="colorPrimaryDarkWelcome">#9b9b9b</color>
-    <color name="colorAccentWelcome">#016Ef1</color>
+    <color name="colorPrimaryButton">#016Ef1</color>
+
+    <color name="themeColor">#016Ef1</color>
+    <color name="subtitleGray">#4b4b4b</color>
 
     <color name="colorTitleIFcommuntiy">#3f51b5</color>
     <color name="lighGray">#ddd</color>
