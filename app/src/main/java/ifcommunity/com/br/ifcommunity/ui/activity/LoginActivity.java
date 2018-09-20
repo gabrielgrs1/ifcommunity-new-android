@@ -19,7 +19,6 @@ import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 import ifcommunity.com.br.ifcommunity.IfcommunityApplication;
 import ifcommunity.com.br.ifcommunity.R;
@@ -63,7 +62,7 @@ public class LoginActivity extends GenericActivity implements LoginService.Login
 
     @Override
     public void loadingMethods() {
-        appPreferences = new AppPreferences(context);
+        instanceSharedPreferences();
         loadValidation();
         loadSavedUser();
     }
@@ -98,7 +97,7 @@ public class LoginActivity extends GenericActivity implements LoginService.Login
     void login() {
         if (validateAllFields() && checkInternet()) {
             loginService();
-            remeberCheckToggle();
+            rememberCheckToggle();
         }
     }
 
@@ -113,7 +112,7 @@ public class LoginActivity extends GenericActivity implements LoginService.Login
         startActivity(intent);
     }
 
-    private void remeberCheckToggle() {
+    private void rememberCheckToggle() {
         if (rememberCheckbox.isChecked()) {
             appPreferences.put("user", loginEditText.getText().toString());
             appPreferences.put("password", passwordEditText.getText().toString());
@@ -165,7 +164,6 @@ public class LoginActivity extends GenericActivity implements LoginService.Login
         }
     }
 
-
     private boolean validateAllFields() {
         boolean fieldsIsValid = true;
         for (IValidator validator :
@@ -175,5 +173,9 @@ public class LoginActivity extends GenericActivity implements LoginService.Login
             }
         }
         return fieldsIsValid;
+    }
+
+    private void instanceSharedPreferences() {
+        appPreferences = new AppPreferences(context);
     }
 }

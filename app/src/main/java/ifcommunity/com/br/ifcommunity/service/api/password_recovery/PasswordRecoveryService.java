@@ -3,8 +3,6 @@ package ifcommunity.com.br.ifcommunity.service.api.password_recovery;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import java.util.Objects;
-
 import ifcommunity.com.br.ifcommunity.IfcommunityApplication;
 import ifcommunity.com.br.ifcommunity.R;
 import ifcommunity.com.br.ifcommunity.service.api.APIClient;
@@ -32,7 +30,7 @@ public class PasswordRecoveryService implements IPasswordRecoveryService {
         passwordRecoveryListener.startLoading();
 
         PasswordRecoveryApi passwordRecoveryApi = this.apiClient.getRetrofit().create(PasswordRecoveryApi.class);
-        Call<PasswordRecoveryResponse> loginResponse = passwordRecoveryApi.login(passwordRecoveryRequest);
+        Call<PasswordRecoveryResponse> loginResponse = passwordRecoveryApi.passwordRecovery(passwordRecoveryRequest);
 
         loginResponse.enqueue(new Callback<PasswordRecoveryResponse>() {
             @Override

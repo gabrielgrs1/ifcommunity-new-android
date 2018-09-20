@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">IFCommunity</string>
 
-    <!-- Error -->
+    <!--Error-->
     <string name="generic_no_connection_message">Verifique sua conexão com a internet e tente novamente!</string>
     <string name="generic_server_error">Não foi possível se conectar ao servidor.</string>
     <string name="generic_worng_user_password">Usuário e/ou senha incorreto!</string>

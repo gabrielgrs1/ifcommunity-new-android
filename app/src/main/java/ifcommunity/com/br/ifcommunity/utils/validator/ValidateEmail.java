@@ -30,7 +30,7 @@ public class ValidateEmail implements IValidator {
     public boolean isValid() {
         if (!defaultValidation.isValid()) return false;
 
-        String login = emailEditText.getText().toString();
-        return defaultValidation(login);
+        String email = emailEditText.getText().toString();
+        return defaultValidation(email);
     }
 }

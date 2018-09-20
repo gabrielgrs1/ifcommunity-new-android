@@ -11,5 +11,5 @@ import retrofit2.http.POST;
  */
 public interface PasswordRecoveryApi {
     @POST("/user/passwordRecovery")
-    Call<PasswordRecoveryResponse> login(@Body final PasswordRecoveryRequest passwordRecoveryRequest);
+    Call<PasswordRecoveryResponse> passwordRecovery(@Body final PasswordRecoveryRequest passwordRecoveryRequest);
 }

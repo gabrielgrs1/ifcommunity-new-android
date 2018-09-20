@@ -12,11 +12,11 @@ import retrofit2.http.POST;
 public interface LoginApi {
 
     /**
-     * Request for login in Application
+     * Request for passwordRecovery in Application
      *
      * @param loginRequest
      * @return
      */
-    @POST("/user/login")
+    @POST("/user/passwordRecovery")
     Call<LoginResponse> login(@Body final LoginRequest loginRequest);
 }

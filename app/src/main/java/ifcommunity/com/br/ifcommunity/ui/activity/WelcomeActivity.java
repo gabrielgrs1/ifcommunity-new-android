@@ -9,15 +9,18 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ifcommunity.com.br.ifcommunity.R;
 
-public class WelcomeActivity extends AppCompatActivity {
+public class WelcomeActivity extends GenericActivity {
 
     final Context context = this;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void setLayout() {
         setContentView(R.layout.activity_welcome);
         ButterKnife.bind(this);
+    }
+
+    @Override
+    public void loadingMethods() {
 
     }
 

@@ -72,7 +72,7 @@ public class ForgotPasswordActivity extends GenericActivity implements PasswordR
 
     @OnClick(R.id.forgot_password_send_button)
     void sendRecoveryPasswordEmailButtonAction() {
-        if (validateAllFields()) {
+        if (validateAllFields() && checkInternet()) {
             sendRecoveryMail();
         }
     }
