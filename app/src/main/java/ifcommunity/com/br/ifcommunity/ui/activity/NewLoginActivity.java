@@ -29,6 +29,7 @@ public class NewLoginActivity extends GenericActivity implements LoginService.Lo
     @BindView(R.id.progress_bar_login)
     ProgressBar progressBarLogin;
 
+
     @Override
     public void setLayout() {
         setContentView(R.layout.activity_new_login);
@@ -38,11 +39,6 @@ public class NewLoginActivity extends GenericActivity implements LoginService.Lo
     @Override
     public void loadingMethods() {
 
-    }
-
-    @OnClick(R.id.login_login_button)
-    void login() {
-        loginService();
     }
 
     @Override
@@ -66,6 +62,17 @@ public class NewLoginActivity extends GenericActivity implements LoginService.Lo
     public void serverError(String message) {
 
     }
+
+    @OnClick(R.id.login_login_button)
+    void login() {
+        loginService();
+    }
+
+    @OnClick(R.id.login_back_button)
+    void backToWelcome() {
+        onBackPressed();
+    }
+
 
     private void loginService() {
         String login = Objects.requireNonNull(loginEditText.getText().toString());

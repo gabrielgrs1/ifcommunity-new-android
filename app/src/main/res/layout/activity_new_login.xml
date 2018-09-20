@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.activity.NewLoginActivity">
 
+
     <ImageView
         android:id="@+id/login_background_imageview"
         android:layout_width="0dp"
@@ -15,6 +16,17 @@
         android:src="@drawable/background_welcome"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/login_back_button"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/ic_arrow_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -114,9 +126,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/login_password_input_layout"
+        android:layout_marginTop="30dp"
         android:indeterminate="true"
         android:indeterminateTint="#016Ef1"
-        android:layout_marginTop="30dp"
         android:indeterminateTintMode="src_atop"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
