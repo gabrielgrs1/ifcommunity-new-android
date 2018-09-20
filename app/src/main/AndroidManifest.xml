@@ -29,7 +29,7 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity
-            android:name=".ui.activity.NewLoginActivity"
+            android:name=".ui.activity.LoginActivity"
             android:theme="@style/WelcomeLoginTheme" />
     </application>
 

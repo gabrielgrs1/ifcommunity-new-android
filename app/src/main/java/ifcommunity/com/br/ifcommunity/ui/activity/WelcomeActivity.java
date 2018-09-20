@@ -4,10 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.Toast;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ifcommunity.com.br.ifcommunity.R;
@@ -26,7 +23,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
     @OnClick(R.id.welcome_login_button)
     void changeToLoginScreen() {
-        Intent intentToLoginScreen = new Intent(context, NewLoginActivity.class);
+        Intent intentToLoginScreen = new Intent(context, LoginActivity.class);
         startActivity(intentToLoginScreen);
     }
 }

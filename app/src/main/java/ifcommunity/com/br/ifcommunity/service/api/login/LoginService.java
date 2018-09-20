@@ -38,6 +38,8 @@ public class LoginService implements ILoginService {
 
                 if (response.isSuccessful() && response.body() != null) {
                     loginListener.response(response.body());
+                } else if (response.code() == 403) {
+                    loginListener.serverError("Usuário e/ou senha incorreto!");
                 } else if (response.code() != 200) {
                     loginListener.serverError(IfcommunityApplication.getInstance().getString(R.string.error_server));
                 }
