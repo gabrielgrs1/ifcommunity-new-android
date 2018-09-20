@@ -2,6 +2,8 @@ package ifcommunity.com.br.ifcommunity.service.api.login;
 
 import android.support.annotation.NonNull;
 
+import java.util.Objects;
+
 import ifcommunity.com.br.ifcommunity.IfcommunityApplication;
 import ifcommunity.com.br.ifcommunity.R;
 import ifcommunity.com.br.ifcommunity.service.api.APIClient;
@@ -40,6 +42,8 @@ public class LoginService implements ILoginService {
                     loginListener.response(response.body());
                 } else if (response.code() == 403) {
                     loginListener.serverError("Usuário e/ou senha incorreto!");
+                } else if (response.code() == 500) {
+                    loginListener.serverError(Objects.requireNonNull(response.errorBody()).toString());
                 } else if (response.code() != 200) {
                     loginListener.serverError(IfcommunityApplication.getInstance().getString(R.string.error_server));
                 }
