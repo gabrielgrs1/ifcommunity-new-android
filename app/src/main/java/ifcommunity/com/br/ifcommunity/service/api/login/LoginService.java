@@ -39,6 +39,7 @@ public class LoginService implements ILoginService {
 
                 if (response.isSuccessful() && response.body() != null) {
                     loginListener.response(response.body());
+                    IfcommunityApplication.getInstance().setUser(response.body());
                 } else if (response.code() == 403) {
                     loginListener.serverError(IfcommunityApplication.getInstance().getString(R.string.generic_worng_user_password));
                 } else if (response.code() == 500) {

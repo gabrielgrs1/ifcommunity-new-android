@@ -26,13 +26,20 @@ public class APIClient {
 
     public APIClient(@NonNull Context context, @NonNull String baseUrl) {
 
+        buildOkHttpClient();
+        buildRetrofit(baseUrl);
+    }
+
+    private void buildOkHttpClient() {
         okHttpClient = new OkHttpClient()
                 .newBuilder()
                 .addInterceptor(checkConnectionInterceptor)
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .readTimeout(30, TimeUnit.SECONDS)
                 .build();
+    }
 
+    private void buildRetrofit(@NonNull String baseUrl) {
         retrofit = new Retrofit
                 .Builder()
                 .baseUrl(baseUrl)
