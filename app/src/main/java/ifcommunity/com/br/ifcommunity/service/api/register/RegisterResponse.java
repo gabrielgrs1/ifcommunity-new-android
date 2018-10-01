@@ -2,7 +2,9 @@ package ifcommunity.com.br.ifcommunity.service.api.register;
 
 import com.google.gson.annotations.SerializedName;
 
-public class RegisterResponse {
+import java.io.Serializable;
+
+public class RegisterResponse implements Serializable {
 
     @SerializedName("userId")
     private String userId;
@@ -31,16 +33,11 @@ public class RegisterResponse {
     @SerializedName("enrolledNumber")
     private String enrolledNumber;
 
-    public RegisterResponse(String userId, Integer studentId, String user, String name, String phone, String mail, Integer typeUser, Integer period, String enrolledNumber) {
-        this.userId = userId;
-        this.studentId = studentId;
-        this.user = user;
-        this.name = name;
-        this.phone = phone;
-        this.mail = mail;
-        this.typeUser = typeUser;
-        this.period = period;
-        this.enrolledNumber = enrolledNumber;
+    @SerializedName("photoHash")
+    private String photoHash;
+
+
+    public RegisterResponse() {
     }
 
     public String getUserId() {
@@ -113,5 +110,29 @@ public class RegisterResponse {
 
     public void setEnrolledNumber(String enrolledNumber) {
         this.enrolledNumber = enrolledNumber;
+    }
+
+    public String getPhotoHash() {
+        return photoHash;
+    }
+
+    public void setPhotoHash(String photoHash) {
+        this.photoHash = photoHash;
+    }
+
+    @Override
+    public String toString() {
+        return "RegisterResponse{" +
+                "userId='" + userId + '\'' +
+                ", studentId=" + studentId +
+                ", user='" + user + '\'' +
+                ", name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", mail='" + mail + '\'' +
+                ", typeUser=" + typeUser +
+                ", period=" + period +
+                ", enrolledNumber='" + enrolledNumber + '\'' +
+                ", photoHash='" + photoHash + '\'' +
+                '}';
     }
 }
