@@ -40,4 +40,19 @@
     <string name="welcome_description_textview">Plataforma desenvolvida para compartilhar conhecimentos de todas as discilpinas</string>
     <string name="welcome_login_button">Login</string>
     <string name="welcome_register_button">Criar uma conta</string>
+
+    <!--Register-->
+    <string name="register_periodo">Período:</string>
+    <string name="register_matricula">Matricula:</string>
+    <string name="register_cellphone">Celular:</string>
+    <string name="register_full_name">Nome Completo:</string>
+    <string name="register_description">Conte-nos um pouco sobre você</string>
+
+    <!--Register2-->
+    <string name="register2_password">Senha:</string>
+    <string name="register2_user">Usuário:</string>
+    <string name="register2_email">Email:</string>
+    <string name="register2_description">Conte-nos um pouco mais</string>
+
+
 </resources>

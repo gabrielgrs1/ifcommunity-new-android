@@ -1,9 +1,17 @@
 package ifcommunity.com.br.ifcommunity.ui.activity;
 
-import butterknife.ButterKnife;
-import ifcommunity.com.br.ifcommunity.R;
+import android.widget.EditText;
 
-public class RegisterActivity extends GenericActivity {
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import ifcommunity.com.br.ifcommunity.R;
+import ifcommunity.com.br.ifcommunity.service.api.register.RegisterResponse;
+import ifcommunity.com.br.ifcommunity.service.api.register.RegisterService;
+
+public class RegisterActivity extends GenericActivity implements RegisterService.RegisterServiceListener{
+
+
     @Override
     public void setLayout() {
         setContentView(R.layout.activity_register);
@@ -12,6 +20,31 @@ public class RegisterActivity extends GenericActivity {
 
     @Override
     public void loadingMethods() {
+
+    }
+
+    @Override
+    public void responseRegister(RegisterResponse registerResponse) {
+
+    }
+
+    @Override
+    public void responseVerify(String stringResponse) {
+
+    }
+
+    @Override
+    public void startLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void serverError(String message) {
 
     }
 }

@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
+import ifcommunity.com.br.ifcommunity.service.api.register.RegisterResponse;
+
 /**
  * Created by paulo.
  * Date: 11/08/18
@@ -42,6 +44,36 @@ public class LoginResponse implements Serializable {
 
 
     public LoginResponse() {
+    }
+
+    public LoginResponse(String userId, Integer studentId, String user, String name, String phone, String mail, Integer typeUser, Integer period, String enrolledNumber, String photoHash) {
+        this.userId = userId;
+        this.studentId = studentId;
+        this.user = user;
+        this.name = name;
+        this.phone = phone;
+        this.mail = mail;
+        this.typeUser = typeUser;
+        this.period = period;
+        this.enrolledNumber = enrolledNumber;
+        this.photoHash = photoHash;
+    }
+
+    public static LoginResponse transformRegisterToLogin(RegisterResponse body) {
+        LoginResponse loginResponse = new LoginResponse(
+                body.getUserId(),
+                body.getStudentId(),
+                body.getUser(),
+                body.getName(),
+                body.getPhone(),
+                body.getMail(),
+                body.getTypeUser(),
+                body.getPeriod(),
+                body.getEnrolledNumber(),
+                body.getPhotoHash()
+        );
+
+        return null;
     }
 
     public String getUserId() {
