@@ -1,6 +1,6 @@
 package ifcommunity.com.br.ifcommunity.service.api.password_recovery;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Log;
 
 import ifcommunity.com.br.ifcommunity.IfcommunityApplication;

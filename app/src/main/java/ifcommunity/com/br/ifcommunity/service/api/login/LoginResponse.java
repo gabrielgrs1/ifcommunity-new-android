@@ -1,17 +1,18 @@
 package ifcommunity.com.br.ifcommunity.service.api.login;
 
-import com.google.gson.annotations.SerializedName;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-import java.io.Serializable;
+import com.google.gson.annotations.SerializedName;
 
 import ifcommunity.com.br.ifcommunity.service.api.register.RegisterResponse;
 
 /**
- * Created by paulo.
+ * Created by gabrielgrs.
  * Date: 11/08/18
  * Time: 15:48
  */
-public class LoginResponse implements Serializable {
+public class LoginResponse implements Parcelable {
     @SerializedName("userId")
     private String userId;
 
@@ -73,7 +74,7 @@ public class LoginResponse implements Serializable {
                 body.getPhotoHash()
         );
 
-        return null;
+        return loginResponse;
     }
 
     public String getUserId() {
@@ -171,4 +172,64 @@ public class LoginResponse implements Serializable {
                 ", photoHash='" + photoHash + '\'' +
                 '}';
     }
+
+    protected LoginResponse(Parcel in) {
+        userId = in.readString();
+        studentId = in.readByte() == 0x00 ? null : in.readInt();
+        user = in.readString();
+        name = in.readString();
+        phone = in.readString();
+        mail = in.readString();
+        typeUser = in.readByte() == 0x00 ? null : in.readInt();
+        period = in.readByte() == 0x00 ? null : in.readInt();
+        enrolledNumber = in.readString();
+        photoHash = in.readString();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(userId);
+        if (studentId == null) {
+            dest.writeByte((byte) (0x00));
+        } else {
+            dest.writeByte((byte) (0x01));
+            dest.writeInt(studentId);
+        }
+        dest.writeString(user);
+        dest.writeString(name);
+        dest.writeString(phone);
+        dest.writeString(mail);
+        if (typeUser == null) {
+            dest.writeByte((byte) (0x00));
+        } else {
+            dest.writeByte((byte) (0x01));
+            dest.writeInt(typeUser);
+        }
+        if (period == null) {
+            dest.writeByte((byte) (0x00));
+        } else {
+            dest.writeByte((byte) (0x01));
+            dest.writeInt(period);
+        }
+        dest.writeString(enrolledNumber);
+        dest.writeString(photoHash);
+    }
+
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<LoginResponse> CREATOR = new Parcelable.Creator<LoginResponse>() {
+        @Override
+        public LoginResponse createFromParcel(Parcel in) {
+            return new LoginResponse(in);
+        }
+
+        @Override
+        public LoginResponse[] newArray(int size) {
+            return new LoginResponse[size];
+        }
+    };
 }

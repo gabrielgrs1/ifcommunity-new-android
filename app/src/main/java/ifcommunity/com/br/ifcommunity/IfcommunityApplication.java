@@ -1,7 +1,7 @@
 package ifcommunity.com.br.ifcommunity;
 
 import android.app.Application;
-import android.support.v7.app.AppCompatDelegate;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import ifcommunity.com.br.ifcommunity.service.api.APIClient;
 import ifcommunity.com.br.ifcommunity.service.api.login.LoginResponse;

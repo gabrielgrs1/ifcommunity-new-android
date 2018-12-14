@@ -2,13 +2,13 @@ package ifcommunity.com.br.ifcommunity.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.design.widget.TextInputLayout;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputLayout;
 import com.irozon.sneaker.Sneaker;
 
 import net.grandcentrix.tray.AppPreferences;
@@ -34,7 +34,6 @@ public class LoginActivity extends GenericActivity implements LoginService.Login
     Context context = this;
     private final List<IValidator> validatorList = new ArrayList<>();
     private AppPreferences appPreferences;
-
 
     @BindView(R.id.login_login_edittext)
     EditText loginEditText;
@@ -69,7 +68,9 @@ public class LoginActivity extends GenericActivity implements LoginService.Login
 
     @Override
     public void response(LoginResponse loginResponse) {
-        Toast.makeText(context, "Usuário logado: " + loginResponse.getName(), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, LoggedActivity.class);
+        intent.putExtra("user", loginResponse);
+        startActivity(intent);
     }
 
     @Override

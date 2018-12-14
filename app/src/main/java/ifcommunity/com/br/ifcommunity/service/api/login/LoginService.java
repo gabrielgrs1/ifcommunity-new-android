@@ -1,6 +1,6 @@
 package ifcommunity.com.br.ifcommunity.service.api.login;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Log;
 
 import ifcommunity.com.br.ifcommunity.IfcommunityApplication;
@@ -37,7 +37,7 @@ public class LoginService implements ILoginService {
             public void onResponse(@NonNull Call<LoginResponse> call, @NonNull Response<LoginResponse> response) {
                 loginListener.hideLoading();
 
-                if (response.isSuccessful() && response.body() != null) {
+                if (response.isSuccessful() && response.body() != null)  {
                     loginListener.response(response.body());
                     IfcommunityApplication.getInstance().setUser(response.body());
                 } else if (response.code() == 403) {

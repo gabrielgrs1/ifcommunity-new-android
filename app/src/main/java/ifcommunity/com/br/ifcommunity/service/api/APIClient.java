@@ -1,7 +1,7 @@
 package ifcommunity.com.br.ifcommunity.service.api;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 import ifcommunity.com.br.ifcommunity.utils.Utils;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -31,9 +32,13 @@ public class APIClient {
     }
 
     private void buildOkHttpClient() {
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.BASIC);
+
         okHttpClient = new OkHttpClient()
                 .newBuilder()
                 .addInterceptor(checkConnectionInterceptor)
+                .addInterceptor(logging)
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .readTimeout(30, TimeUnit.SECONDS)
                 .build();

@@ -17,6 +17,6 @@ public interface LoginApi {
      * @param loginRequest
      * @return
      */
-    @POST("/user/passwordRecovery")
+    @POST("/user/login")
     Call<LoginResponse> login(@Body final LoginRequest loginRequest);
 }

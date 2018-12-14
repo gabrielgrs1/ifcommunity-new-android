@@ -1,9 +1,8 @@
 package ifcommunity.com.br.ifcommunity.utils.validator;
 
-import android.support.design.widget.TextInputLayout;
+import com.google.android.material.textfield.TextInputLayout;
 import android.widget.EditText;
 
-import butterknife.BindView;
 import ifcommunity.com.br.ifcommunity.IfcommunityApplication;
 import ifcommunity.com.br.ifcommunity.R;
 
