@@ -11,6 +11,7 @@
     <string name="generic_sorry_title">Desculpe</string>
     <string name="generic_required_field">Campo obrigatório</string>
     <string name="generic_invalid_email">Email inválido</string>
+    <string name="generic_invalid_matter">Requisição de matéria inválida</string>
     <string name="generic_invalid_login">Login inválido</string>
     <string name="generic_invalid_password">Senha inválida</string>
     <string name="generic_not_implemented">Funcionalidade ainda não implementada!</string>
