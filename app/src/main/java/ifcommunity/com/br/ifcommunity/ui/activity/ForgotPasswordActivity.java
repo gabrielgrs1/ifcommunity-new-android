@@ -14,12 +14,14 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ifcommunity.com.br.ifcommunity.IfcommunityApplication;
 import ifcommunity.com.br.ifcommunity.R;
+import ifcommunity.com.br.ifcommunity.service.api.CallbackResponseListener;
 import ifcommunity.com.br.ifcommunity.service.api.password_recovery.PasswordRecoveryResponse;
 import ifcommunity.com.br.ifcommunity.service.api.password_recovery.PasswordRecoveryService;
 import ifcommunity.com.br.ifcommunity.utils.validator.IValidator;
 import ifcommunity.com.br.ifcommunity.utils.validator.ValidateEmail;
+import retrofit2.Response;
 
-public class ForgotPasswordActivity extends GenericActivity implements PasswordRecoveryService.PasswordRecoveryListener {
+public class ForgotPasswordActivity extends GenericActivity implements CallbackResponseListener {
 
     Context context = this;
     private final List<IValidator> validatorList = new ArrayList<>();
@@ -42,7 +44,12 @@ public class ForgotPasswordActivity extends GenericActivity implements PasswordR
     }
 
     @Override
-    public void response(PasswordRecoveryResponse passwordRecoveryResponse) {
+    public void onResponse(Response response) {
+
+    }
+
+    @Override
+    public void onError(String message) {
 
     }
 
@@ -53,11 +60,6 @@ public class ForgotPasswordActivity extends GenericActivity implements PasswordR
 
     @Override
     public void hideLoading() {
-
-    }
-
-    @Override
-    public void serverError(String message) {
 
     }
 

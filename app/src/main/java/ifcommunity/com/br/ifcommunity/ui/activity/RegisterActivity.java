@@ -1,15 +1,12 @@
 package ifcommunity.com.br.ifcommunity.ui.activity;
 
-import android.widget.EditText;
-
-import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import ifcommunity.com.br.ifcommunity.R;
+import ifcommunity.com.br.ifcommunity.service.api.CallbackResponseListener;
 import ifcommunity.com.br.ifcommunity.service.api.register.RegisterResponse;
-import ifcommunity.com.br.ifcommunity.service.api.register.RegisterService;
+import retrofit2.Response;
 
-public class RegisterActivity extends GenericActivity implements RegisterService.RegisterServiceListener{
+public class RegisterActivity extends GenericActivity implements CallbackResponseListener {
 
 
     @Override
@@ -24,12 +21,12 @@ public class RegisterActivity extends GenericActivity implements RegisterService
     }
 
     @Override
-    public void responseRegister(RegisterResponse registerResponse) {
+    public void onResponse(Response response) {
 
     }
 
     @Override
-    public void responseVerify(String stringResponse) {
+    public void onError(String message) {
 
     }
 
@@ -40,11 +37,6 @@ public class RegisterActivity extends GenericActivity implements RegisterService
 
     @Override
     public void hideLoading() {
-
-    }
-
-    @Override
-    public void serverError(String message) {
 
     }
 }

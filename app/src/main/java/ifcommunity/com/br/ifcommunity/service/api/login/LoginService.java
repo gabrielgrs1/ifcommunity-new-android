@@ -1,11 +1,13 @@
 package ifcommunity.com.br.ifcommunity.service.api.login;
 
-import androidx.annotation.NonNull;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import ifcommunity.com.br.ifcommunity.IfcommunityApplication;
 import ifcommunity.com.br.ifcommunity.R;
 import ifcommunity.com.br.ifcommunity.service.api.APIClient;
+import ifcommunity.com.br.ifcommunity.service.api.CallbackResponseListener;
+import ifcommunity.com.br.ifcommunity.service.api.IApiService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -17,10 +19,10 @@ import retrofit2.Response;
  */
 public class LoginService implements ILoginService {
 
-    private LoginServiceListener loginListener;
+    private CallbackResponseListener loginListener;
     private APIClient apiClient;
 
-    public LoginService(LoginServiceListener loginListener) {
+    public LoginService(CallbackResponseListener loginListener) {
         this.apiClient = IfcommunityApplication.getInstance().getApiClient();
         this.loginListener = loginListener;
     }
@@ -29,7 +31,7 @@ public class LoginService implements ILoginService {
     public void login(LoginRequest loginRequest) {
         loginListener.startLoading();
 
-        LoginApi loginApi = this.apiClient.getRetrofit().create(LoginApi.class);
+        IApiService loginApi = this.apiClient.getRetrofit().create(IApiService.class);
         Call<LoginResponse> loginResponse = loginApi.login(loginRequest);
 
         loginResponse.enqueue(new Callback<LoginResponse>() {
@@ -37,15 +39,15 @@ public class LoginService implements ILoginService {
             public void onResponse(@NonNull Call<LoginResponse> call, @NonNull Response<LoginResponse> response) {
                 loginListener.hideLoading();
 
-                if (response.isSuccessful() && response.body() != null)  {
-                    loginListener.response(response.body());
+                if (response.isSuccessful() && response.body() != null) {
+                    loginListener.onResponse(response);
                     IfcommunityApplication.getInstance().setUser(response.body());
                 } else if (response.code() == 403) {
-                    loginListener.serverError(IfcommunityApplication.getInstance().getString(R.string.generic_worng_user_password));
+                    loginListener.onError(IfcommunityApplication.getInstance().getString(R.string.generic_worng_user_password));
                 } else if (response.code() == 500) {
-                    loginListener.serverError(IfcommunityApplication.getInstance().getString(R.string.generic_server_error));
+                    loginListener.onError(IfcommunityApplication.getInstance().getString(R.string.generic_server_error));
                 } else if (response.code() != 200) {
-                    loginListener.serverError(IfcommunityApplication.getInstance().getString(R.string.generic_unkown_error));
+                    loginListener.onError(IfcommunityApplication.getInstance().getString(R.string.generic_unkown_error));
                 }
 
                 Log.e(IfcommunityApplication.getInstance().getString(R.string.generic_log_error), response.message());
@@ -54,19 +56,8 @@ public class LoginService implements ILoginService {
             @Override
             public void onFailure(@NonNull Call<LoginResponse> call, @NonNull Throwable t) {
                 loginListener.hideLoading();
-                loginListener.serverError(IfcommunityApplication.getInstance().getString(R.string.generic_server_error));
+                loginListener.onError(IfcommunityApplication.getInstance().getString(R.string.generic_server_error));
             }
         });
     }
-
-    public interface LoginServiceListener {
-        void response(LoginResponse loginResponse);
-
-        void startLoading();
-
-        void hideLoading();
-
-        void serverError(String message);
-    }
-
 }

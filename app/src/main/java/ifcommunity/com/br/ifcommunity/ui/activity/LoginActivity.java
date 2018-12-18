@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.irozon.sneaker.Sneaker;
@@ -22,14 +21,16 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import ifcommunity.com.br.ifcommunity.IfcommunityApplication;
 import ifcommunity.com.br.ifcommunity.R;
+import ifcommunity.com.br.ifcommunity.service.api.CallbackResponseListener;
 import ifcommunity.com.br.ifcommunity.service.api.login.LoginRequest;
 import ifcommunity.com.br.ifcommunity.service.api.login.LoginResponse;
 import ifcommunity.com.br.ifcommunity.service.api.login.LoginService;
 import ifcommunity.com.br.ifcommunity.utils.validator.IValidator;
 import ifcommunity.com.br.ifcommunity.utils.validator.ValidateLogin;
 import ifcommunity.com.br.ifcommunity.utils.validator.ValidatePassword;
+import retrofit2.Response;
 
-public class LoginActivity extends GenericActivity implements LoginService.LoginServiceListener {
+public class LoginActivity extends GenericActivity implements CallbackResponseListener {
 
     Context context = this;
     private final List<IValidator> validatorList = new ArrayList<>();
@@ -67,9 +68,9 @@ public class LoginActivity extends GenericActivity implements LoginService.Login
     }
 
     @Override
-    public void response(LoginResponse loginResponse) {
+    public void onResponse(Response loginResponse) {
         Intent intent = new Intent(this, LoggedActivity.class);
-        intent.putExtra("user", loginResponse);
+        intent.putExtra("user", (LoginResponse) loginResponse.body());
         startActivity(intent);
     }
 
@@ -86,7 +87,7 @@ public class LoginActivity extends GenericActivity implements LoginService.Login
     }
 
     @Override
-    public void serverError(String message) {
+    public void onError(String message) {
         Sneaker.with(this)
                 .setTitle(IfcommunityApplication.getInstance().getString(R.string.generic_erro_title))
                 .setDuration(8000)

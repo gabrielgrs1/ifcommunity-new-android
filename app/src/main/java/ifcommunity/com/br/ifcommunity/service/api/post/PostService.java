@@ -7,6 +7,8 @@ import java.util.List;
 import ifcommunity.com.br.ifcommunity.IfcommunityApplication;
 import ifcommunity.com.br.ifcommunity.R;
 import ifcommunity.com.br.ifcommunity.service.api.APIClient;
+import ifcommunity.com.br.ifcommunity.service.api.CallbackResponseListener;
+import ifcommunity.com.br.ifcommunity.service.api.IApiService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -18,10 +20,10 @@ import retrofit2.Response;
  */
 public class PostService implements IPostService {
 
-    private PostServiceListener postServiceListener;
+    private CallbackResponseListener postServiceListener;
     private APIClient apiClient;
 
-    public PostService(PostServiceListener postServiceListener) {
+    public PostService(CallbackResponseListener postServiceListener) {
         this.apiClient = IfcommunityApplication.getInstance().getApiClient();
         this.postServiceListener = postServiceListener;
     }
@@ -30,7 +32,7 @@ public class PostService implements IPostService {
     public void getPosts(String matterName, String lastPost) {
         postServiceListener.startLoading();
 
-        PostApi postApi = this.apiClient.getRetrofit().create(PostApi.class);
+        IApiService postApi = this.apiClient.getRetrofit().create(IApiService.class);
         Call<List<PostResponse>> postResponse = postApi.getPosts(matterName, lastPost);
 
         postResponse.enqueue(new Callback<List<PostResponse>>() {
@@ -39,7 +41,7 @@ public class PostService implements IPostService {
                 postServiceListener.hideLoading();
 
                 if (response.isSuccessful() && response.body() != null) {
-                    postServiceListener.onResponse(response.body());
+                    postServiceListener.onResponse(response);
                 } else if (response.code() == 403) {
                     postServiceListener.onError(IfcommunityApplication.getInstance().getString(R.string.generic_worng_user_password));
                 } else if (response.code() == 500) {
@@ -58,15 +60,4 @@ public class PostService implements IPostService {
             }
         });
     }
-
-    public interface PostServiceListener {
-        void onResponse(List<PostResponse> postResponse);
-
-        void onError(String message);
-
-        void startLoading();
-
-        void hideLoading();
-    }
-
 }

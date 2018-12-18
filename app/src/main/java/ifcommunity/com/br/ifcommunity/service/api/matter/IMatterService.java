@@ -7,5 +7,5 @@ package ifcommunity.com.br.ifcommunity.service.api.matter;
  */
 public interface IMatterService {
 
-    void getMatters(Integer studentId);
+    void getMatters();
 }

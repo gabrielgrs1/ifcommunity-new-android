@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".ui.activity.LoggedActivity">
 
+    <FrameLayout
+        android:id="@+id/logged_content_framelayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/logged_bottom_navigation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.aurelhubert.ahbottomnavigation.AHBottomNavigation
         android:id="@+id/logged_bottom_navigation"
         android:layout_width="match_parent"
@@ -13,38 +22,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <com.tuyenmonkey.mkloader.MKLoader
-        android:id="@+id/logged_loading_mkloader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:mk_color="@android:color/darker_gray"
-        app:mk_type="FishSpinner" />
-
-
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/logged_post_swiperefreshlayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/logged_post_recyclerview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

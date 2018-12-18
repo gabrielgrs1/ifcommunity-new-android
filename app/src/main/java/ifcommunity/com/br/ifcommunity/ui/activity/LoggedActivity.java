@@ -1,37 +1,37 @@
 package ifcommunity.com.br.ifcommunity.ui.activity;
 
 import android.graphics.Color;
-import android.view.View;
+import android.os.Bundle;
+import android.widget.Toast;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
-import com.tuyenmonkey.mkloader.MKLoader;
 
-import java.util.List;
 import java.util.Objects;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ifcommunity.com.br.ifcommunity.R;
-import ifcommunity.com.br.ifcommunity.service.api.post.PostResponse;
-import ifcommunity.com.br.ifcommunity.service.api.post.PostService;
-import ifcommunity.com.br.ifcommunity.ui.adapter.PostAdapter;
+import ifcommunity.com.br.ifcommunity.ui.adapter.GetPostMatterListener;
+import ifcommunity.com.br.ifcommunity.ui.fragment.MatterFragment;
+import ifcommunity.com.br.ifcommunity.ui.fragment.PostFragment;
 
-public class LoggedActivity extends GenericActivity implements PostService.PostServiceListener, SwipeRefreshLayout.OnRefreshListener {
+public class LoggedActivity extends GenericActivity implements GetPostMatterListener {
 
+    public static final int GROUP_POSITION = 0;
+    public static final int PROFILE_POSITION = 3;
+    public static final int MENU_POSITION = 4;
     public static final int POST_POSITION = 2;
+    public static final int MATTER_POSITION = 1;
 
-    @BindView(R.id.logged_post_recyclerview)
-    RecyclerView mPostRecyclerView;
+    @BindView(R.id.logged_bottom_navigation)
+    AHBottomNavigation bottomNavigation;
 
-    @BindView(R.id.logged_loading_mkloader)
-    MKLoader mLoaderPostMkLoader;
-
-    @BindView(R.id.logged_post_swiperefreshlayout)
-    SwipeRefreshLayout mPostSwipeRefreshLayout;
+    private FragmentManager mFragmentManager;
 
     @Override
     public void setLayout() {
@@ -41,67 +41,27 @@ public class LoggedActivity extends GenericActivity implements PostService.PostS
 
     @Override
     public void loadingMethods() {
-        getPosts();
         configureBottomBar();
-        configureActionBar();
-        configureListeners();
-        configureRefreshLayout();
-
+        configureFragmentManager();
     }
 
-    private void configureRefreshLayout() {
-        mPostSwipeRefreshLayout.setColorScheme(R.color.colorPrimary);
+    private void configureFragmentManager() {
+        mFragmentManager = getSupportFragmentManager();
+        configureFirstFragmentAsPostFragment(mFragmentManager);
     }
 
-    @Override
-    public void onResponse(List<PostResponse> postResponse) {
-        configurePostAdapter(postResponse);
-        hideRefreshSpinner();
-    }
-
-    @Override
-    public void startLoading() {
-
-    }
-
-    @Override
-    public void hideLoading() {
-        mLoaderPostMkLoader.setVisibility(View.GONE);
-    }
-
-    @Override
-    public void onError(String message) {
-
-    }
-
-    @Override
-    public void onRefresh() {
-        getPosts();
-    }
-
-
-    private void configureActionBar() {
-        Objects.requireNonNull(getSupportActionBar()).setTitle("Postagens");
-    }
-
-    private void getPosts() {
-        new PostService(this).getPosts("", "");
-    }
-
-    private void hideRefreshSpinner() {
-        if (mPostSwipeRefreshLayout.isRefreshing()) {
-            mPostSwipeRefreshLayout.setRefreshing(false);
-        }
+    private void configureFirstFragmentAsPostFragment(FragmentManager fragmentManager) {
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.logged_content_framelayout, new PostFragment());
+        fragmentTransaction.commit();
     }
 
     private void configureBottomBar() {
-        AHBottomNavigation bottomNavigation = findViewById(R.id.logged_bottom_navigation);
-
-        AHBottomNavigationItem itemGroup = new AHBottomNavigationItem("Grupos", R.drawable.team, R.color.colorPrimary);
-        AHBottomNavigationItem itemMatters = new AHBottomNavigationItem("Materias", R.drawable.book, R.color.colorPrimary);
-        AHBottomNavigationItem itemPost = new AHBottomNavigationItem("Postagens", R.drawable.news, R.color.colorPrimary);
-        AHBottomNavigationItem itemProfile = new AHBottomNavigationItem("Perfil", R.drawable.user, R.color.colorPrimary);
-        AHBottomNavigationItem itemMenu = new AHBottomNavigationItem("Menu", R.drawable.menu, R.color.colorPrimary);
+        AHBottomNavigationItem itemGroup = new AHBottomNavigationItem("Grupos", R.drawable.team, R.color.colorPrimaryButton);
+        AHBottomNavigationItem itemMatters = new AHBottomNavigationItem("Materias", R.drawable.books, R.color.colorPrimaryButton);
+        AHBottomNavigationItem itemPost = new AHBottomNavigationItem("Postagens", R.drawable.blog, R.color.colorPrimaryButton);
+        AHBottomNavigationItem itemProfile = new AHBottomNavigationItem("Perfil", R.drawable.user, R.color.colorPrimaryButton);
+        AHBottomNavigationItem itemMenu = new AHBottomNavigationItem("Menu", R.drawable.menu, R.color.colorPrimaryButton);
 
         bottomNavigation.addItem(itemGroup);
         bottomNavigation.addItem(itemMatters);
@@ -111,27 +71,69 @@ public class LoggedActivity extends GenericActivity implements PostService.PostS
 
         bottomNavigation.setDefaultBackgroundColor(Color.parseColor("#FEFEFE"));
 
+        bottomNavigation.setAccentColor(R.color.colorPrimaryButton);
+
         bottomNavigation.setInactiveColor(Color.parseColor("#747474"));
         bottomNavigation.setTitleState(AHBottomNavigation.TitleState.ALWAYS_SHOW);
         bottomNavigation.setCurrentItem(POST_POSITION);
 
-
         bottomNavigation.setOnTabSelectedListener((position, wasSelected) -> {
-            //TODO Colocar troca de fragment
+            switch (position) {
+                case POST_POSITION:
+                    setPostFragment("");
+                    break;
+                case MATTER_POSITION:
+                    setMatterFragment();
+                    break;
+                case GROUP_POSITION:
+                    Toast.makeText(this, "Funcionalidade nao implementada!", Toast.LENGTH_SHORT).show();
+                    break;
+                case PROFILE_POSITION:
+                    Toast.makeText(this, "Funcionalidade nao implementada!", Toast.LENGTH_SHORT).show();
+                    break;
+                case MENU_POSITION:
+                    Toast.makeText(this, "Funcionalidade nao implementada!", Toast.LENGTH_SHORT).show();
+                    break;
+            }
 
             return true;
         });
     }
 
-    private void configureListeners() {
-        mPostSwipeRefreshLayout.setOnRefreshListener(this);
+    private void setMatterFragment() {
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Matérias");
+        bottomNavigation.setCurrentItem(POST_POSITION);
+        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.logged_content_framelayout, new MatterFragment());
+        fragmentTransaction.commit();
+    }
+
+    private void setPostFragment(String matterName) {
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Postagens");
+        PostFragment postFragment = new PostFragment();
+
+        if (matterName != null) {
+            Bundle bundle = new Bundle();
+            bundle.putString("matter", matterName);
+            postFragment.setArguments(bundle);
+        }
+
+        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.logged_content_framelayout, postFragment);
+        fragmentTransaction.commit();
     }
 
 
-    private void configurePostAdapter(List<PostResponse> postResponse) {
-        PostAdapter postAdapter = new PostAdapter(postResponse, this);
-        mPostRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        postAdapter.notifyDataSetChanged();
-        mPostRecyclerView.setAdapter(postAdapter);
+    @Override
+    public void onAttachFragment(@NonNull Fragment fragment) {
+        if (fragment instanceof MatterFragment) {
+            MatterFragment matterFragment = (MatterFragment) fragment;
+            matterFragment.setGetterPostListener(this);
+        }
+    }
+
+    @Override
+    public void callPostFragment(String matterName) {
+        setPostFragment(matterName);
     }
 }
