@@ -2,6 +2,7 @@ package ifcommunity.com.br.ifcommunity.service.api.matter;
 
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ifcommunity.com.br.ifcommunity.IfcommunityApplication;
@@ -27,11 +28,11 @@ public class MatterService implements IMatterService {
     }
 
     @Override
-    public void getMatters(Integer studentId) {
+    public void getMatters() {
         matterServiceListener.startLoading();
 
         MatterApi matterApi = this.apiClient.getRetrofit().create(MatterApi.class);
-        Call<List<MatterResponse>> matterResponse = matterApi.getMatters(studentId);
+        Call<List<MatterResponse>> matterResponse = matterApi.getMatters();
 
         matterResponse.enqueue(new Callback<List<MatterResponse>>() {
             @Override
@@ -39,7 +40,14 @@ public class MatterService implements IMatterService {
                 matterServiceListener.hideLoading();
 
                 if (response.isSuccessful() && response.body() != null) {
-                    matterServiceListener.onResponse(response.body());
+                    List<String> matterNameResponse = new ArrayList<>();
+
+                    for (MatterResponse matter :
+                            response.body()) {
+                        matterNameResponse.add(matter.getMatterName());
+                    }
+
+                    matterServiceListener.onResponse(matterNameResponse);
                 } else if (response.code() == 403) {
                     matterServiceListener.onError(IfcommunityApplication.getInstance().getString(R.string.generic_invalid_matter));
                 } else if (response.code() == 500) {
@@ -60,7 +68,7 @@ public class MatterService implements IMatterService {
     }
 
     public interface MatterServiceListener {
-        void onResponse(List<MatterResponse> matterResponse);
+        void onResponse(List<String> matterResponseName);
 
         void onError(String message);
 

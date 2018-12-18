@@ -9,5 +9,5 @@ import retrofit2.http.Query;
 public interface MatterApi {
 
     @GET("/matter")
-    Call<List<MatterResponse>> getMatters(@Query("studentId") Integer studentId);
+    Call<List<MatterResponse>> getMatters();
 }

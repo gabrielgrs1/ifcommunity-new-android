@@ -11,7 +11,6 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import ifcommunity.com.br.ifcommunity.R;
-import ifcommunity.com.br.ifcommunity.service.api.matter.MatterResponse;
 
 /**
  * Created by mmarafelli
@@ -21,12 +20,15 @@ import ifcommunity.com.br.ifcommunity.service.api.matter.MatterResponse;
  */
 public class MatterAdapter extends RecyclerView.Adapter<MatterAdapter.ViewHolder> {
 
-    private List<MatterResponse> mMatterList;
+    private List<String> mMatterResponseNameList;
     private Context mContext;
+    private GetPostMatterListener getPostMatterListener;
 
-    public MatterAdapter(List<MatterResponse> mMatterList, Context mContext) {
-        this.mMatterList = mMatterList;
+
+    public MatterAdapter(List<String> matterResponseNameList, Context mContext, GetPostMatterListener getPostMatterListener) {
+        this.mMatterResponseNameList = matterResponseNameList;
         this.mContext = mContext;
+        this.getPostMatterListener = getPostMatterListener;
     }
 
     @NonNull
@@ -37,19 +39,17 @@ public class MatterAdapter extends RecyclerView.Adapter<MatterAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        MatterResponse matterResponse = mMatterList.get(position);
+        String matterResponseName = mMatterResponseNameList.get(position);
 
-        holder.mMatterTextView.setText(matterResponse.getMatterName());
-
+        holder.mMatterTextView.setText(matterResponseName);
     }
 
     @Override
     public int getItemCount() {
-        return mMatterList.size();
+        return mMatterResponseNameList.size();
     }
 
-
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView mMatterTextView;
 
@@ -57,7 +57,13 @@ public class MatterAdapter extends RecyclerView.Adapter<MatterAdapter.ViewHolder
             super(itemView);
 
             mMatterTextView = itemView.findViewById(R.id.adapter_matter_textview);
+            mMatterTextView.setOnClickListener(this);
+            mMatterTextView.getRootView().setOnClickListener(this);
         }
 
+        @Override
+        public void onClick(View v) {
+            getPostMatterListener.callPostFragment(mMatterResponseNameList.get(getAdapterPosition()));
+        }
     }
 }
