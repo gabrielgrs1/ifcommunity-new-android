@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import com.tuyenmonkey.mkloader.MKLoader;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -18,10 +19,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ifcommunity.com.br.ifcommunity.R;
+import ifcommunity.com.br.ifcommunity.service.api.CallbackResponseListener;
+import ifcommunity.com.br.ifcommunity.service.api.matter.MatterResponse;
 import ifcommunity.com.br.ifcommunity.service.api.matter.MatterService;
 import ifcommunity.com.br.ifcommunity.ui.activity.LoggedActivity;
 import ifcommunity.com.br.ifcommunity.ui.adapter.GetPostMatterListener;
 import ifcommunity.com.br.ifcommunity.ui.adapter.MatterAdapter;
+import retrofit2.Response;
 
 /**
  * Created by gabrielgrs
@@ -29,7 +33,7 @@ import ifcommunity.com.br.ifcommunity.ui.adapter.MatterAdapter;
  * Time: 8:06 PM
  * Project: ifcommunity-new-android
  */
-public class MatterFragment extends Fragment implements MatterService.MatterServiceListener, GetPostMatterListener {
+public class MatterFragment extends Fragment implements CallbackResponseListener, GetPostMatterListener {
 
     @BindView(R.id.matter_list_recyclerview)
     RecyclerView mMatterRecyclerView;
@@ -49,9 +53,19 @@ public class MatterFragment extends Fragment implements MatterService.MatterServ
     }
 
     @Override
-    public void onResponse(List<String> matterResponseName) {
-        Collections.sort(matterResponseName);
-        configureMatterAdapter(matterResponseName);
+    public void onResponse(Response response) {
+        List<String> matterNameResponse = new ArrayList<>();
+
+        if (response.body() != null) {
+            for (MatterResponse matter :
+                    (List<MatterResponse>) response.body()) {
+                matterNameResponse.add(matter.getMatterName());
+            }
+            Collections.sort(matterNameResponse);
+            configureMatterAdapter(matterNameResponse);
+        }
+
+
     }
 
     @Override

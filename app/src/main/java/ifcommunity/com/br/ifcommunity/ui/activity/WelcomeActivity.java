@@ -2,7 +2,6 @@ package ifcommunity.com.br.ifcommunity.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import androidx.appcompat.app.AppCompatActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;

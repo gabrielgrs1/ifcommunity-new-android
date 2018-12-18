@@ -18,10 +18,11 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ifcommunity.com.br.ifcommunity.R;
+import ifcommunity.com.br.ifcommunity.service.api.CallbackResponseListener;
 import ifcommunity.com.br.ifcommunity.service.api.post.PostResponse;
 import ifcommunity.com.br.ifcommunity.service.api.post.PostService;
-import ifcommunity.com.br.ifcommunity.ui.adapter.GetPostMatterListener;
 import ifcommunity.com.br.ifcommunity.ui.adapter.PostAdapter;
+import retrofit2.Response;
 
 /**
  * Created by gabrielgrs
@@ -29,7 +30,7 @@ import ifcommunity.com.br.ifcommunity.ui.adapter.PostAdapter;
  * Time: 7:34 PM
  * Project: ifcommunity-new-android
  */
-public class PostFragment extends Fragment implements PostService.PostServiceListener, SwipeRefreshLayout.OnRefreshListener {
+public class PostFragment extends Fragment implements CallbackResponseListener, SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.logged_post_recyclerview)
     RecyclerView mPostRecyclerView;
@@ -53,8 +54,8 @@ public class PostFragment extends Fragment implements PostService.PostServiceLis
     }
 
     @Override
-    public void onResponse(List<PostResponse> postResponse) {
-        configurePostAdapter(postResponse);
+    public void onResponse(Response response) {
+        configurePostAdapter((List<PostResponse>) response.body());
         hideRefreshSpinner();
     }
 
@@ -67,6 +68,7 @@ public class PostFragment extends Fragment implements PostService.PostServiceLis
     public void hideLoading() {
         mLoaderPostMkLoader.setVisibility(View.GONE);
     }
+
 
     @Override
     public void onError(String message) {

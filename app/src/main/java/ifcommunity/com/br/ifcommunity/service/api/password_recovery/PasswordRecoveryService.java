@@ -1,11 +1,13 @@
 package ifcommunity.com.br.ifcommunity.service.api.password_recovery;
 
-import androidx.annotation.NonNull;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import ifcommunity.com.br.ifcommunity.IfcommunityApplication;
 import ifcommunity.com.br.ifcommunity.R;
 import ifcommunity.com.br.ifcommunity.service.api.APIClient;
+import ifcommunity.com.br.ifcommunity.service.api.CallbackResponseListener;
+import ifcommunity.com.br.ifcommunity.service.api.IApiService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -17,10 +19,10 @@ import retrofit2.Response;
  */
 public class PasswordRecoveryService implements IPasswordRecoveryService {
 
-    private PasswordRecoveryListener passwordRecoveryListener;
+    private CallbackResponseListener passwordRecoveryListener;
     private APIClient apiClient;
 
-    public PasswordRecoveryService(PasswordRecoveryListener passwordRecoveryListener) {
+    public PasswordRecoveryService(CallbackResponseListener passwordRecoveryListener) {
         this.apiClient = IfcommunityApplication.getInstance().getApiClient();
         this.passwordRecoveryListener = passwordRecoveryListener;
     }
@@ -29,7 +31,7 @@ public class PasswordRecoveryService implements IPasswordRecoveryService {
     public void recoveryPassword(PasswordRecoveryRequest passwordRecoveryRequest) {
         passwordRecoveryListener.startLoading();
 
-        PasswordRecoveryApi passwordRecoveryApi = this.apiClient.getRetrofit().create(PasswordRecoveryApi.class);
+        IApiService passwordRecoveryApi = this.apiClient.getRetrofit().create(IApiService.class);
         Call<PasswordRecoveryResponse> loginResponse = passwordRecoveryApi.passwordRecovery(passwordRecoveryRequest);
 
         loginResponse.enqueue(new Callback<PasswordRecoveryResponse>() {
@@ -38,11 +40,11 @@ public class PasswordRecoveryService implements IPasswordRecoveryService {
                 passwordRecoveryListener.hideLoading();
 
                 if (response.isSuccessful() && response.body() != null) {
-                    passwordRecoveryListener.response(response.body());
+                    passwordRecoveryListener.onResponse(response);
                 } else if (response.code() == 500) {
-                    passwordRecoveryListener.serverError(IfcommunityApplication.getInstance().getString(R.string.generic_server_error));
+                    passwordRecoveryListener.onError(IfcommunityApplication.getInstance().getString(R.string.generic_server_error));
                 } else if (response.code() != 200) {
-                    passwordRecoveryListener.serverError(IfcommunityApplication.getInstance().getString(R.string.generic_unkown_error));
+                    passwordRecoveryListener.onError(IfcommunityApplication.getInstance().getString(R.string.generic_unkown_error));
                 }
 
                 Log.e(IfcommunityApplication.getInstance().getString(R.string.generic_log_error), response.message());
@@ -51,19 +53,8 @@ public class PasswordRecoveryService implements IPasswordRecoveryService {
             @Override
             public void onFailure(@NonNull Call<PasswordRecoveryResponse> call, @NonNull Throwable t) {
                 passwordRecoveryListener.hideLoading();
-                passwordRecoveryListener.serverError(IfcommunityApplication.getInstance().getString(R.string.generic_server_error));
+                passwordRecoveryListener.onError(IfcommunityApplication.getInstance().getString(R.string.generic_server_error));
             }
         });
     }
-
-    public interface PasswordRecoveryListener {
-        void response(PasswordRecoveryResponse passwordRecoveryResponse);
-
-        void startLoading();
-
-        void hideLoading();
-
-        void serverError(String message);
-    }
-
 }
